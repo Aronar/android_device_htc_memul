@@ -21,6 +21,13 @@ LOCAL_SRC_FILES := chargeled.c
 
 LOCAL_CFLAGS += -Wall
 
+LOCAL_SRC_FILES := \
+    htc_log.c
+
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE := libc_htc_symbols
+LOCAL_MODULE_TAGS := optional
+
 LOCAL_STATIC_LIBRARIES := libc liblog libcutils
 LOCAL_FORCE_STATIC_EXECUTABLE := true
 
