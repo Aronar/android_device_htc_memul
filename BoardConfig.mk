@@ -54,6 +54,8 @@ TARGET_NO_BOOTLOADER := true
 # Camera
 COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND='{"htc.camera.sensor.", AID_CAMERA, 0}, {"camera.4k2k.", AID_MEDIA, 0}, {"persist.camera.", AID_MEDIA, 0},'
 USE_DEVICE_SPECIFIC_CAMERA := true
+# Flags
+COMMON_GLOBAL_CFLAGS += -DHTCLOG
 
 # CMHW
 BOARD_HARDWARE_CLASS := device/htc/memul/cmhw
