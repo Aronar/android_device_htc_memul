@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,17 +11,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := chargeled.c
+LOCAL_SRC_FILES := \
+    htc_log.c
 
-LOCAL_CFLAGS += -Wall
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE := libc_htc_symbols
+LOCAL_MODULE_TAGS := optional
 
-LOCAL_MODULE := chargeled
-LOCAL_MODULE_TAGS := optional eng
-LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-include $(BUILD_EXECUTABLE)
+include $(BUILD_STATIC_LIBRARY)
