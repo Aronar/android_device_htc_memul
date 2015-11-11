@@ -56,9 +56,6 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/memul/include
 BOARD_CUSTOM_BOOTIMG_MK := device/htc/memul/mkbootimg.mk
 TARGET_KERNEL_CONFIG := cm_memul_defconfig
 
-# Logging
-COMMON_GLOBAL_CFLAGS += -DHTCLOG -DMOTOROLA_LOG
-
 # RIL
 BOARD_RIL_CLASS := ../../../device/htc/memul/ril
 
