@@ -4,10 +4,6 @@
     "target_path": "kernel/htc/msm8974"
   },
   {
-    "repository": "android_device_htc_s4-common",
-    "target_path": "device/htc/s4-common",
-  },
-  {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
   },
