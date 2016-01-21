@@ -1,4 +1,5 @@
 LOCAL_PATH := $(call my-dir)
+PERL = perl
 
 ## Don't change anything under here. The variables are named MEM_whatever
 ## on purpose, to avoid conflicts with similarly named variables at other
@@ -6,7 +7,6 @@ LOCAL_PATH := $(call my-dir)
 
 ## Imported from the original makefile...
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
-MEM_DTS_NAMES := msm8926
 
 MEM_DTS_FILES = $(wildcard $(TOP)/$(TARGET_KERNEL_SOURCE)/arch/arm/boot/dts/msm8926-memul*.dts)
 MEM_DTS_FILE = $(lastword $(subst /, ,$(1)))
@@ -17,11 +17,10 @@ DTC = $(KERNEL_OUT)/scripts/dtc/dtc
 DTBTAGNAME := "htc,project-id = <"
 
 define append-MEM-dtb
-mkdir -p $(KERNEL_OUT)/arch/arm/boot;\
-$(foreach MEM_DTS_NAME, $(MEM_DTS_NAMES), \
+   mkdir -p $(KERNEL_OUT)/arch/arm/boot;\
    $(foreach d, $(MEM_DTS_FILES), \
       $(DTC) -p 1024 -O dtb -o $(call DTB_FILE,$(d)) $(d); \
-      cat $(KERNEL_ZIMG) $(call DTB_FILE,$(d)) > $(call ZIMG_FILE,$(d));))
+      cat $(KERNEL_ZIMG) $(call DTB_FILE,$(d)) > $(call ZIMG_FILE,$(d));)
 endef
 
 
@@ -33,7 +32,7 @@ $(INSTALLED_DTIMAGE_TARGET): $(DTBTOOL) $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/u
 	@echo -e ${CL_CYN}"Start DT image: $@"${CL_RST}
 	$(call append-MEM-dtb)
 	$(call pretty,"Target dt image: $(INSTALLED_DTIMAGE_TARGET)")
-	$(DTBTOOL) -o $(INSTALLED_DTIMAGE_TARGET) -s $(BOARD_KERNEL_PAGESIZE) -d $(DTBTAGNAME) -p $(KERNEL_OUT)/scripts/dtc/ $(KERNEL_OUT)/arch/arm/boot/
+	$(hide) $(DTBTOOL) -o $(INSTALLED_DTIMAGE_TARGET) -s $(BOARD_KERNEL_PAGESIZE) -d $(DTBTAGNAME) -p $(KERNEL_OUT)/scripts/dtc/ $(KERNEL_OUT)/arch/arm/boot/
 	@echo -e ${CL_CYN}"Made DT image: $@"${CL_RST}
 
 
